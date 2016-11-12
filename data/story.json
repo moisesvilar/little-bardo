@@ -1,0 +1,447 @@
+{
+    "START": {
+        "id": "START",
+        "type": "text-scene",
+        "text": "<p>La habitación era oscura, vieja y sucia. Como una reliquia del pasado que luchaba por mantenerse en pie.</p><p>En el medio, dos sillones de cuero rojo. Raídos, sin color. Llenos de manchas. Llenaban la habitación como dos tronos en un palacio. Y en uno de ellos, el que estaba más alejado de la puerta, era ocupado por un hombre de color, fuerte y de expresión dura.</p><p>Vestía una larga gabardina de cuero negra y llevaba unas pequeñas gafas de sol de cristal redondo, que contrastaban con su cabeza rapada, sin pelo, y su cara lampiña.</p><p>Jugaba entre sus manos con una pequeña caja metálica del tamaño de un paquete de tabaco, dándole vueltas, mientras la miraba fijamente.</p><p>Cuando se dió cuenta de tu presencia, alzó la vista, sonrió levemente y dijo:</p><blockquote><em>Bienvenido. Ya era hora...</em></blockquote>",
+        "transitions": [
+            {
+                "requiredState": null,
+                "target": "WELCOME"
+            }
+        ]
+    },
+    "WELCOME": {
+        "id": "WELCOME",
+        "type": "dialog-scene",
+        "actions": {
+            "START": {
+                "id": "START",
+                "type": "question-action",
+                "who": {
+                    "id": "MORPHEO",
+                    "name": "???",
+                    "img": "morpheo.jpg"
+                },
+                "question": "Empecemos por el principio. ¿Cuál es tu nombre, hijo?",
+                "answer": "",
+                "configField": "PLAYER_NAME",
+                "transitions": [
+                    {
+                        "requiredState": {
+                            "field": "PLAYER_NAME",
+                            "operator": "LENGTH <=",
+                            "value": 3
+                        },
+                        "target": "SHORT-NAME"
+                    },
+                    {
+                        "requiredState": {
+                            "field": "PLAYER_NAME",
+                            "operator": "LENGTH >",
+                            "value": 3
+                        },
+                        "target": "LONG-NAME"
+                    }
+                ]
+            },
+            "SHORT-NAME": {
+                "id": "SHORT-NAME",
+                "type": "sentence-action",
+                "text": "Un nombre corto y conciso. Me gusta.",
+                "who": {
+                    "id": "MORPHEO",
+                    "name": "???",
+                    "img": "morpheo.jpg"
+                },
+                "transitions": [
+                    {
+                        "requiredState": null,
+                        "target": "MORPHEO-PRESENTATION"
+                    }
+                ]
+            },
+            "LONG-NAME": {
+                "id": "LONG-NAME",
+                "type": "sentence-action",
+                "text": "Un nombre largo y difícil de recordar. No sé si me convence...",
+                "who": {
+                    "id": "MORPHEO",
+                    "name": "???",
+                    "img": "morpheo.jpg"
+                },
+                "transitions": [
+                    {
+                        "requiredState": null,
+                        "target": "MORPHEO-PRESENTATION"
+                    }
+                ]
+            },
+            "MORPHEO-PRESENTATION": {
+                "id": "MORPHEO-PRESENTATION",
+                "type": "sentence-action",
+                "text": "Bienvenido, {PLAYER_NAME}. Como ya habrás imaginado, yo soy Morfeo",
+                "who": {
+                    "id": "MORPHEO",
+                    "name": "Morfeo",
+                    "img": "morpheo.jpg"
+                },
+                "transitions": [
+                    {
+                        "requiredState": null,
+                        "target": "PLAYER-PRESENTATION"
+                    }
+                ]
+            },
+            "PLAYER-PRESENTATION": {
+                "id": "PLAYER-PRESENTATION",
+                "type": "sentence-action",
+                "text": "Es un honor conocerte",
+                "who": {
+                    "id": "PLAYER"
+                },
+                "transitions": [
+                    {
+                        "requiredState": null,
+                        "target": "MORPHEO-SENTENCE-1"
+                    }
+                ]
+            },
+            "MORPHEO-SENTENCE-1": {
+                "id": "MORPHEO-SENTENCE-1",
+                "type": "sentence-action",
+                "text": "No, el honor es mío. Por favor, pasa. Siéntate. Supongo que ahora te sentirás un poco como Alicia cayendo por la madriguera de conejo",
+                "who": {
+                    "id": "MORPHEO",
+                    "name": "Morfeo",
+                    "img": "morpheo.jpg"
+                },
+                "transitions": [
+                    {
+                        "requiredState": null,
+                        "target": "PLAYER-SENTENCE-1"
+                    }
+                ]
+            },
+            "PLAYER-SENTENCE-1": {
+                "id": "PLAYER-SENTENCE-1",
+                "type": "sentence-action",
+                "text": "Se podría decir que sí",
+                "who": {
+                    "id": "PLAYER"
+                },
+                "transitions": [
+                    {
+                        "requiredState": null,
+                        "target": "MORPHEO-SENTENCE-2"
+                    }
+                ]
+            },
+            "MORPHEO-SENTENCE-2": {
+                "id": "MORPHEO-SENTENCE-2",
+                "type": "multiple-choice-action",
+                "question": "Puedo verlo en tus ojos. Tienes la mirada de un hombre que acepta lo que ve porque espera despertarse. Irónicamente, no dista mucho de la realidad. ¿Crees en el destino, {PLAYER_NAME}?",
+                "who": {
+                    "id": "MORPHEO",
+                    "name": "Morfeo",
+                    "img": "morpheo.jpg"
+                },
+                "choices": [
+                    {
+                        "answer": "Sí",
+                        "consequence": {
+                            "newConfig": {
+                                "CREE_EN_DESTINO": true,
+                                "MORFEO_SE_VA": true
+                            }
+                        }
+                    },
+                    {
+                        "answer": "No",
+                        "consequence": {
+                            "newConfig": {
+                                "CREE_EN_DESTINO": false
+                            }
+                        }
+                    }
+                ],
+                "transitions": [
+                    {
+                        "requiredState": {
+                            "field": "CREE_EN_DESTINO",
+                            "operator": "=",
+                            "value": false
+                        },
+                        "target": "MORPHEO-SENTENCE-3"
+                    },
+                    {
+                        "requiredState": {
+                            "field": "CREE_EN_DESTINO",
+                            "operator": "=",
+                            "value": true
+                        },
+                        "target": "MORPHEO-SENTENCE-FIN-1"
+                    }
+                ]
+            },
+            "MORPHEO-SENTENCE-FIN-1": {
+                "id": "MORPHEO-SENTENCE-FIN-1",
+                "type": "sentence-action",
+                "who": {
+                    "id": "MORPHEO",
+                    "name": "Morfeo",
+                    "img": "morpheo.jpg"
+                },
+                "text": "Una respuesta... desilusionante. Lo siento, {PLAYER_NAME}, pero no puedo ayudarte. Nuestra conversación termina aquí."
+            },
+            "MORPHEO-SENTENCE-3": {
+                "id": "MORPHEO-SENTENCE-3",
+                "type": "multiple-choice-action",
+                "question": "¿Por qué no?",
+                "who": {
+                    "id": "MORPHEO",
+                    "name": "Morfeo",
+                    "img": "morpheo.jpg"
+                },
+                "choices": [
+                    {
+                        "answer": "No me gusta la idea de no ser yo el que controle mi vida",
+                        "consequence": {
+                            "newConfig": {
+                                "MORFEO_SE_VA": false
+                            }
+                        }
+                    },
+                    {
+                        "answer": "¡No tengo porqué responderte, jodido chalado!",
+                        "consequence": {
+                            "newConfig": {
+                                "MORFEO_SE_VA": true
+                            }
+                        }
+                    }
+                ],
+                "transitions": [
+                    {
+                        "requiredState": {
+                            "field": "MORFEO_SE_VA",
+                            "operator": "=",
+                            "value": false
+                        },
+                        "target": "MORPHEO-SENTENCE-4"
+                    },
+                    {
+                        "requiredState": {
+                            "field": "MORFEO_SE_VA",
+                            "operator": "=",
+                            "value": true
+                        },
+                        "target": "MORPHEO-SENTENCE-FIN-2"
+                    }
+                ]
+            },
+            "MORPHEO-SENTENCE-FIN-2": {
+                "id": "MORPHEO-SENTENCE-FIN-2",
+                "type": "sentence-action",
+                "who": {
+                    "id": "MORPHEO",
+                    "name": "Morfeo",
+                    "img": "morpheo.jpg"
+                },
+                "text": "¡Pero qué falta de respeto es esta, mocoso! ¡Nuestra conversación termina aquí! Puedes irte al infierno."
+            },
+            "MORPHEO-SENTENCE-4": {
+                "id": "MORPHEO-SENTENCE-4",
+                "type": "multiple-choice-action",
+                "question": "Sé exactamente a lo que te refieres. Te explicaré por qué estás aquí. Estás porque sabes algo. Aunque lo que sabes no lo puedes explicar. Pero lo percibes. Ha sido así durante toda tu vida. Algo no funciona en el mundo. No sabes lo que es, pero ahí está. Como una astilla clavada en tu mente y te está enloqueciendo. Esa sensación te ha traído hasta mí. ¿Sabes de lo que estoy hablando?",
+                "who": {
+                    "id": "MORPHEO",
+                    "name": "Morfeo",
+                    "img": "morpheo.jpg"
+                },
+                "choices": [
+                    {
+                        "answer": "¿De Matrix?",
+                        "consequence": {
+                            "newConfig": {
+                                "MORFEO_SE_VA": false
+                            }
+                        }
+                    },
+                    {
+                        "answer": "La verdad es que no tengo ni puta idea...",
+                        "consequence": {
+                            "newConfig": {
+                                "MORFEO_SE_VA": true
+                            }
+                        }
+                    }
+                ],
+                "transitions": [
+                    {
+                        "requiredState": {
+                            "field": "MORFEO_SE_VA",
+                            "operator": "=",
+                            "value": false
+                        },
+                        "target": "MORPHEO-SENTENCE-5"
+                    },
+                    {
+                        "requiredState": {
+                            "field": "MORFEO_SE_VA",
+                            "operator": "=",
+                            "value": true
+                        },
+                        "target": "MORPHEO-SENTENCE-FIN-3"
+                    }
+                ]
+            },
+            "MORPHEO-SENTENCE-FIN-3": {
+                "id": "MORPHEO-SENTENCE-FIN-3",
+                "type": "sentence-action",
+                "who": {
+                    "id": "MORPHEO",
+                    "name": "Morfeo",
+                    "img": "morpheo.jpg"
+                },
+                "text": "Pensándolo bien, todavía estás muy verde para continuar. Nuestra conversación termina aquí. Espero que nos veamos pronto, {PLAYER_NAME}"
+            },
+            "MORPHEO-SENTENCE-5": {
+                "id": "MORPHEO-SENTENCE-5",
+                "type": "sentence-action",
+                "who": {
+                    "id": "MORPHEO",
+                    "name": "Morfeo",
+                    "img": "morpheo.jpg"
+                },
+                "text": "¿Te gustaría saber lo que es? Matrix nos rodea. Está por todas partes incluso ahora, en esta misma habitación. Puedes verla si miras por la ventana o al encender la televisión. Puedes sentirla, cuando vas a trabajar cuando vas a la iglesia cuando pagas tus impuestos. Es el mundo que ha sido puesto ante tus ojos para ocultarte la verdad.",
+                "transitions": [
+                    {
+                        "requiredState": null,
+                        "target": "PLAYER-SENTENCE-5"
+                    }
+                ]
+            },
+            "PLAYER-SENTENCE-5": {
+                "id": "PLAYER-SENTENCE-5",
+                "type": "sentence-action",
+                "who": {
+                    "id": "PLAYER"
+                },
+                "text": "¿Qué verdad?",
+                "transitions": [
+                    {
+                        "requiredState": null,
+                        "target": "MORPHEO-SENTENCE-6"
+                    }
+                ]
+            },
+            "MORPHEO-SENTENCE-6": {
+                "id": "MORPHEO-SENTENCE-6",
+                "type": "multiple-choice-action",
+                "question": "Que eres un esclavo, {PLAYER_NAME}. Igual que los demás, naciste en cautiverio en una prisión que puedes ni oler ni saborear ni tocar. Una prisión para tu mente... Por desgracia, no se puede explicar lo que es Matrix. Has de verla con tus propios ojos... Ésta es tu última oportunidad, después ya no podrás echarte atrás. Si tomas la pastilla azul, fin de la historia. Despertarás en tu cama y creerás lo que quieras creerte. Si tomas la roja, te quedas en el País de las Maravillas y yo te enseñaré hasta dónde llega la madriguera de conejos.",
+                "who": {
+                    "id": "MORPHEO",
+                    "name": "Morfeo",
+                    "img": "morpheo.jpg"
+                },
+                "choices": [
+                    {
+                        "answer": "Tomar la pastilla azul",
+                        "consequence": {
+                            "newConfig": {
+                                "PASTILLA": "azul"
+                            }
+                        }
+                    },
+                    {
+                        "answer": "Tomar la pastilla roja",
+                        "consequence": {
+                            "newConfig": {
+                                "PASTILLA": "roja"
+                            }
+                        }
+                    }
+                ],
+                "transitions": [
+                    {
+                        "requiredState": {
+                            "field": "PASTILLA",
+                            "operator": "=",
+                            "value": "roja"
+                        },
+                        "target": "MORPHEO-SENTENCE-7"
+                    },
+                    {
+                        "requiredState": {
+                            "field": "PASTILLA",
+                            "operator": "=",
+                            "value": "azul"
+                        },
+                        "target": "MORPHEO-SENTENCE-FIN-4"
+                    }
+                ]
+            },
+            "MORPHEO-SENTENCE-FIN-4": {
+                "id": "MORPHEO-SENTENCE-FIN-4",
+                "type": "sentence-action",
+                "who": {
+                    "id": "MORPHEO",
+                    "name": "Morfeo",
+                    "img": "morpheo.jpg"
+                },
+                "text": "Estoy muy sorprendido y... decepcionado con tu decisión. En fin, supongo que tendré que seguir buscando. Que pases una buena vida, {PLAYER_NAME}"
+            },
+            "MORPHEO-SENTENCE-7": {
+                "id": "MORPHEO-SENTENCE-7",
+                "type": "sentence-action",
+                "who": {
+                    "id": "MORPHEO",
+                    "name": "Morfeo",
+                    "img": "morpheo.jpg"
+                },
+                "text": "Recuerda: lo único que te ofrezco es la verdad. Nada más..."
+            }
+        },
+        "transitions": [
+            {
+                "requiredState": {
+                    "field": "MORFEO_SE_VA",
+                    "operator": "=",
+                    "value": true
+                },
+                "target": "BAD-1"
+            },
+            {
+                "requiredState": {
+                    "field": "PASTILLA",
+                    "operator": "=",
+                    "value": "azul"
+                },
+                "target": "BAD-2"
+            },
+            {
+                "requiredState": {
+                    "field": "PASTILLA",
+                    "operator": "=",
+                    "value": "roja"
+                },
+                "target": "GOOD"
+            }
+        ]
+    },
+    "BAD-1": {
+        "id": "BAD-1",
+        "type": "text-scene",
+        "text": "<p>Morfeo se levantó levemente de su sillón y abandonó la sala con gesto serio y consternado. Avanzó hacia la puerta sin mirar una sola vez atrás. Pero tan pronto cerró la puerta tras de sí, el rugido de un enorme trueno resonó como si el rayo cayese a escasos metros. Y todo se volvió oscuro...</p><p>Te incorporas rápidamente. Estás en tu cama. Las sábanas están empapadas de sudor. Parece que todo ha sido un sueño. Pero, aún así, no eres capaz de sacarte de la cabeza esa sensación de que ese sueño pudo haber terminado de otra manera...</p><h1>FIN</h1>"
+    },
+    "BAD-2": {
+        "id": "BAD-2",
+        "type": "text-scene",
+        "text": "<p>La pastilla comenzó a resbalar ligeramente por tu garganta. Al principio todo parecía ir bien. Morfeo se levantó y se fue. Intentaste seguirlo con la mirada... Pero de repente, el mundo empezó a girar a gran velocidad. Cada vez más rápido. Las formas y colores se fundieron en un único flujo de realidad. Y de repente te viste en tu cama. Era un nuevo día. Y el sabor de la pastilla se había tornado en el sabor de la decepción, la oportunidad perdida y una vida basada en el mayor de los engaños.</p><h1>FIN</h1>"
+    },
+    "GOOD": {
+        "id": "GOOD",
+        "type": "text-scene",
+        "text": "<p>Morfeo te ofreció un vaso de agua. Diste un pequeño trago. Al principio, todo parecía ir bien... Pero pronto los acontecimientos empezaron a suceder a gran velocidad. Primero fueron los mareos. La cara de Morfeo se transformó en una pintura difuminada. Una gran sensación de ansiedad te invadió el pecho. Intentaste agarrarte a los brazos del sillón. Pero con gran angustia descubriste que tus manos, junto con tus huesos, con tu piel, se habían fundido en el cuero rojo del asiento. Te hundías en él y nadie iba a ayudarte. Morirías allí, de una manera tan surrealista e increíble.</p><p>Mientras seguías hundiéndote en ese mar extraño de cuero rojo, sólo podías escuchar, desde muy lejos, la voz de Morfeo:</p><blockquote>¿Alguna vez has tenido un sueño, Neo, que pareciese real? ¿Qué ocurriría si no pudieras despertar de ese sueño? ¿Cómo diferenciarías el mundo de los sueños de la realidad?</blockquote><h1>FIN... POR EL MOMENTO</h1>"
+    }
+}
