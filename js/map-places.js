@@ -89,6 +89,7 @@ var WOT_PLACES = [
     { name: "Caralain Grass", alt: ["herbazal de caralain"], type: "region", px: [1848, 1060] },
     { name: "Plains of Maredo", alt: ["llanuras de maredo"], type: "region", px: [2182, 1780] },
     { name: "Hills of Kintara", alt: ["colinas de kintara"], type: "region", px: [2175, 1527] },
+    { name: "Rhannon Hills",  alt: ["colinas de rhannon", "rhannon"], type: "region", px: [1640, 1930] },
 
     // ── Montañas y bosques ───────────────────────────────────────────
     { name: "Mountains of Dhoom", alt: ["montañas de la perdicion", "mountains of doom"], type: "montaña", px: [1984, 311] },

@@ -80,6 +80,33 @@
         return { place: place, keys: keys };
     });
 
+    function levenshtein(a, b) {
+        var prev = [], cur = [], i, j, tmp;
+        for (j = 0; j <= b.length; j++) { prev[j] = j; }
+        for (i = 1; i <= a.length; i++) {
+            cur[0] = i;
+            for (j = 1; j <= b.length; j++) {
+                cur[j] = Math.min(
+                    prev[j] + 1,
+                    cur[j - 1] + 1,
+                    prev[j - 1] + (a.charAt(i - 1) === b.charAt(j - 1) ? 0 : 1)
+                );
+            }
+            tmp = prev; prev = cur; cur = tmp;
+        }
+        return prev[b.length];
+    }
+
+    // Distancia mínima entre la consulta y la clave completa o cualquiera de sus palabras
+    function fuzzyDistance(q, key) {
+        var best = levenshtein(q, key);
+        key.split(' ').forEach(function (word) {
+            var d = levenshtein(q, word);
+            if (d < best) { best = d; }
+        });
+        return best;
+    }
+
     function findMatches(query) {
         var q = normalize(query);
         if (!q) { return []; }
@@ -95,7 +122,23 @@
             else if (best === 'starts') { starts.push(entry.place); }
             else if (best === 'contains') { contains.push(entry.place); }
         });
-        return exact.concat(starts, contains);
+        var results = exact.concat(starts, contains);
+        if (results.length > 0) { return results; }
+
+        // Sin coincidencias: tolera erratas de 1-2 letras («Rhannor» → «Rhannon»)
+        var maxDist = q.length >= 6 ? 2 : (q.length >= 4 ? 1 : 0);
+        if (maxDist === 0) { return []; }
+        var fuzzy = [];
+        index.forEach(function (entry) {
+            var best = Infinity;
+            entry.keys.forEach(function (key) {
+                var d = fuzzyDistance(q, key);
+                if (d < best) { best = d; }
+            });
+            if (best <= maxDist) { fuzzy.push({ place: entry.place, d: best }); }
+        });
+        fuzzy.sort(function (a, b) { return a.d - b.d; });
+        return fuzzy.map(function (f) { return f.place; });
     }
 
     function showToast(message) {
