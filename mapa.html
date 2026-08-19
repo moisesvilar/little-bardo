@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#0e2a47">
+    <title>Mapa de La Rueda del Tiempo</title>
+    <link rel="stylesheet" href="js/vendor/leaflet/leaflet.css">
+    <link rel="stylesheet" href="css/map.css">
+</head>
+<body class="wot-map-page">
+
+    <div id="map"></div>
+
+    <div class="search-bar">
+        <div class="search-row">
+            <input id="search-input" type="search" placeholder="Busca un lugar… (Tar Valon, Caemlyn…)"
+                   autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+                   enterkeyhint="search">
+            <button id="btn-search" type="button">Buscar</button>
+            <button id="btn-clear" type="button" disabled>Quitar&nbsp;📍</button>
+        </div>
+        <div id="suggestions" class="suggestions"></div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="js/vendor/leaflet/leaflet.js"></script>
+    <script src="js/map-places.js"></script>
+    <script src="js/wot-map.js"></script>
+</body>
+</html>

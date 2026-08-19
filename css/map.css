@@ -1,0 +1,198 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body.wot-map-page {
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: #0e2a47;
+    /* Evita que el navegador haga scroll/zoom de la página: los gestos son del mapa */
+    touch-action: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#map {
+    position: fixed;
+    inset: 0;
+    background: #0e2a47;
+    z-index: 0;
+}
+
+/* ── Barra de búsqueda ─────────────────────────────────────────── */
+.search-bar {
+    position: fixed;
+    top: calc(8px + env(safe-area-inset-top, 0px));
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(560px, calc(100% - 16px));
+    z-index: 1000;
+}
+
+.search-row {
+    display: flex;
+    gap: 6px;
+}
+
+.search-row input {
+    flex: 1;
+    min-width: 0;
+    height: 46px;
+    padding: 0 14px;
+    font-size: 16px; /* >=16px evita el auto-zoom de iOS al enfocar */
+    border: none;
+    border-radius: 10px;
+    background: rgba(20, 30, 45, 0.92);
+    color: #f2ede2;
+    outline: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+.search-row input::placeholder {
+    color: #9aa7b5;
+}
+
+.search-row button {
+    height: 46px;
+    padding: 0 14px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+    white-space: nowrap;
+}
+
+#btn-search {
+    background: #c8a24a;
+    color: #241a05;
+}
+
+#btn-search:active {
+    background: #b08d3c;
+}
+
+#btn-clear {
+    background: rgba(20, 30, 45, 0.92);
+    color: #f2ede2;
+}
+
+#btn-clear:disabled {
+    opacity: 0.45;
+    cursor: default;
+}
+
+/* ── Sugerencias ───────────────────────────────────────────────── */
+.suggestions {
+    margin-top: 6px;
+    max-height: 45vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 10px;
+    background: rgba(20, 30, 45, 0.95);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    display: none;
+}
+
+.suggestions.open {
+    display: block;
+}
+
+.suggestions button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 15px;
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    background: transparent;
+    color: #f2ede2;
+    cursor: pointer;
+}
+
+.suggestions button:last-child {
+    border-bottom: none;
+}
+
+.suggestions button:active {
+    background: rgba(200, 162, 74, 0.25);
+}
+
+.suggestions .place-type {
+    font-size: 12px;
+    color: #c8a24a;
+    text-transform: capitalize;
+    flex-shrink: 0;
+}
+
+/* ── Aviso "no encontrado" ─────────────────────────────────────── */
+.toast {
+    position: fixed;
+    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 18px;
+    border-radius: 10px;
+    background: rgba(20, 30, 45, 0.95);
+    color: #f2ede2;
+    font-size: 15px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    z-index: 1100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    max-width: calc(100% - 32px);
+    text-align: center;
+}
+
+.toast.show {
+    opacity: 1;
+}
+
+/* ── Ajustes de Leaflet ────────────────────────────────────────── */
+.leaflet-container {
+    font-size: 14px;
+}
+
+.leaflet-popup-content-wrapper {
+    border-radius: 10px;
+    background: rgba(20, 30, 45, 0.95);
+    color: #f2ede2;
+}
+
+.leaflet-popup-tip {
+    background: rgba(20, 30, 45, 0.95);
+}
+
+.leaflet-popup-content {
+    margin: 10px 16px;
+}
+
+.popup-title {
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.popup-type {
+    font-size: 12px;
+    color: #c8a24a;
+    text-transform: capitalize;
+}
+
+.leaflet-control-zoom a {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+}
+
+.leaflet-control-attribution {
+    background: rgba(255, 255, 255, 0.7);
+    font-size: 10px;
+}
