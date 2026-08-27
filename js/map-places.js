@@ -46,6 +46,8 @@ var WOT_PLACES = [
     { name: "Jurene",        alt: [],                    type: "pueblo", px: [2298, 1220] },
     { name: "Remen",         alt: [],                    type: "pueblo", px: [1770, 1561] },
     { name: "So Habor",      alt: [],                    type: "pueblo", px: [1565, 1627] },
+    { name: "Brytan",        alt: [],                    type: "pueblo", px: [1525, 1672] },
+    { name: "Malden",        alt: [],                    type: "pueblo", px: [1602, 1799] },
     { name: "Alcruna",       alt: [],                    type: "pueblo", px: [993, 1380] },
     { name: "Denhuir",       alt: [],                    type: "pueblo", px: [2183, 820] },
     { name: "Tremonsien",    alt: [],                    type: "pueblo", px: [2530, 940] },
