@@ -92,11 +92,13 @@ var WOT_PLACES = [
     { name: "Plains of Maredo", alt: ["llanuras de maredo"], type: "region", px: [2182, 1780] },
     { name: "Hills of Kintara", alt: ["colinas de kintara"], type: "region", px: [2175, 1527] },
     { name: "Rhannon Hills",  alt: ["colinas de rhannon", "rhannon"], type: "region", px: [1640, 1930] },
+    { name: "Matherin Manor", alt: ["mansion matherin", "casa matherin", "house matherin", "matherin"], type: "lugar", px: [2280, 1430] },
 
     // ── Montañas y bosques ───────────────────────────────────────────
     { name: "Mountains of Dhoom", alt: ["montañas de la perdicion", "mountains of doom"], type: "montaña", px: [1984, 311] },
     { name: "Mountains of Mist", alt: ["montañas de la niebla"], type: "montaña", px: [1248, 1452] },
     { name: "Black Hills",   alt: ["colinas negras"],    type: "montaña", px: [1964, 770] },
+    { name: "Chishen Mountains", alt: ["montañas chishen", "chishen"], type: "montaña", px: [2085, 1478] },
     { name: "Braem Wood",    alt: ["bosque de braem"],   type: "bosque", px: [2073, 1166] },
     { name: "Haddon Mirk",   alt: [],                    type: "bosque", px: [2502, 1605] },
     { name: "Forest of Shadows", alt: ["bosque de las sombras"], type: "bosque", px: [1385, 1330] },
@@ -116,5 +118,8 @@ var WOT_PLACES = [
     { name: "Kabal Deep",    alt: ["sima de kabal"],     type: "mar", px: [1784, 1950] },
     { name: "Windbiter's Finger", alt: ["dedo del muerdevientos"], type: "mar", px: [757, 2080] },
     { name: "Fingers of the Dragon", alt: ["dedos del dragon"], type: "mar", px: [2373, 1936] },
-    { name: "Bay of Remara", alt: ["bahia de remara"],   type: "mar", px: [2816, 1936] }
+    { name: "Bay of Remara", alt: ["bahia de remara"],   type: "mar", px: [2816, 1936] },
+
+    // ── Ríos ─────────────────────────────────────────────────────────
+    { name: "River Erinin",  alt: ["rio erinin", "erinin"], type: "río", px: [2332, 1510] }
 ];

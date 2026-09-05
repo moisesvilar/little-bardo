@@ -15,6 +15,7 @@
         bosque: -0.5,
         isla: 0,
         mar: -1,
+        'río': -1,
         region: -1
     };
 
