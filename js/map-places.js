@@ -68,6 +68,7 @@ var WOT_PLACES = [
 
     // ── Ruinas y lugares señalados ───────────────────────────────────
     { name: "Shadar Logoth", alt: ["aridhol"],           type: "ruinas", px: [1462, 1155] },
+    { name: "Mines of Aelgar", alt: ["minas de aelgar", "aelgar"], type: "ruinas", px: [1075, 1815] },
     { name: "Shayol Ghul",   alt: [],                    type: "montaña", px: [2395, 75] },
     { name: "Dragonmount",   alt: ["monte dragon", "monte del dragon"], type: "montaña", px: [2264, 900] },
     { name: "Tower of Ghenjei", alt: ["torre de ghenjei"], type: "lugar", px: [1583, 1165] },
