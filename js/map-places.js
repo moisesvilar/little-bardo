@@ -56,6 +56,7 @@ var WOT_PLACES = [
     { name: "Nor Chasen",    alt: [],                    type: "pueblo", px: [1529, 1946] },
     { name: "Weesin",        alt: [],                    type: "pueblo", px: [1472, 1930] },
     { name: "So Tehar",      alt: [],                    type: "pueblo", px: [1463, 1952] },
+    { name: "Serana",        alt: [],                    type: "pueblo", px: [1065, 1650] },
     { name: "Alcruna",       alt: [],                    type: "pueblo", px: [993, 1380] },
     { name: "Denhuir",       alt: [],                    type: "pueblo", px: [2183, 820] },
     { name: "Tremonsien",    alt: [],                    type: "pueblo", px: [2530, 940] },
